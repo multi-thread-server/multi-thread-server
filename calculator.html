@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+	<style type="text/css">
+	    *{margin:0;padding:0;}
+	    ul,li{list-style: none;}
+		.reveal{width:100%;height:100px;}
+		.reveal>input{height:50px;line-height: 50px;font-size:50px;color:#ffffff;background-color: black;text-align: right;border: none;width: 240px;padding-right: 10px;}
+		.button>ul>li>button{height:50px;width:45px;border:none;border-radius: 25px;margin:5px ;color:#ffffff;background-color:#585252;font-size:20px;}
+		.button>ul li:first-child>button{background:#D6D0CE;color:black;}
+		.button>ul li button:last-child{background:#F09C10;color:#ffffff;}
+	</style>
+</head>
+<body>
+	<div style="width:250px;height:400px;background-color:black;margin:300px auto 0">
+		<div class="reveal">
+			<input type="button" name="" class="sum" style="width:250px">
+			<input type="text" name="" value="0" class="result">
+		</div>
+		<div class="button">
+			<ul>
+				<li>
+					<button class="dump">AC</button>
+					<button class="clear">C</button>
+					<button class="oper" operator="5">%</button>
+					<button class="oper" operator="4">/</button>
+				</li>
+				<li>
+					<button class="number">7</button>
+					<button class="number">8</button>
+					<button class="number">9</button>
+					<button class="oper" operator="3">*</button>
+				</li>
+				<li>
+					<button class="number">4</button>
+					<button class="number">5</button>
+					<button class="number">6</button>
+					<button class="oper" operator="2">-</button>
+				</li>
+				<li>
+					<button class="number">1</button>
+					<button class="number">2</button>
+					<button class="number">3</button>
+					<button class="oper" operator="1">+</button>
+				</li>
+				<li>
+					<button class="number" style="width:105px;">0</button>
+					<button class="spot">.</button>
+					<button class="equal" operator="0">=</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html> 
