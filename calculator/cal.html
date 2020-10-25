@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+	<style type="text/css">
+	    *{margin:0;padding:0;}
+	    ul,li{list-style: none;}
+		.reveal{width:100%;height:100px;}
+		.reveal>input{height:50px;line-height: 50px;font-size:50px;color:#ffffff;background-color: black;text-align: right;border: none;width: 240px;padding-right: 10px;}
+		.button>ul>li>button{height:50px;width:45px;border:none;border-radius: 25px;margin:5px ;color:#ffffff;background-color:#585252;font-size:20px;}
+		.button>ul li:first-child>button{background:#D6D0CE;color:black;}
+		.button>ul li button:last-child{background:#F09C10;color:#ffffff;}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			//获取输入框元素
+            var res=$('.result');
+            //获取结果显示框
+            var sum=$('.sum');
+            var resval=0;
+            var sumval=0;
+            var operator=-1;
+            var jon=['+','_','*',''];
+            //求10的幂函数
+            function funm(n){
+            	if(n==0){
+            		return 1
+            	}
+            	return funm(n-1)*10           		
+            }     
+           
+            //AC清除按钮
+            $('.dump').on('click',function(){
+               res.val('0');
+               resval=0;
+               sum.val('');
+               sumber=0;
+               operator=-1;
+            });
+            //C清楚按钮
+            $('.clear').on('click',function(){
+            	if(resval!='0'){
+            		resval=resval.slice(0,resval.length-1);
+            		res.val(resval);
+            	}
+            })
+            //数字按钮
+            $(".number").on('click',function(){   
+            //如果当前输入框数字为0或前一次输入为等号时 
+               if(operator==0){
+               	 operator=-1;
+               	 res.val('0');
+               	 resval=''; 
+               } 
+               if(resval=="0"){
+               	 res.val('0');
+               	 resval=''; 
+               }
+                
+               resval=resval+$(this).html();
+               res.val(resval);
+            });
+                     
+             //小数点
+            $('.spot').on('click',function(){
+            	//遍历输入框数字，检查是否有小数点
+                 for(var i=0;i<resval.length;i++){
+                 	if(resval[i]=="."){
+                 		return false;
+                 	}
+                 }   
+                  if(operator==0){
+               	 operator=1;
+                 res.val('0')
+               	 resval=res.val(); 
+               }   	 
+            	 	 resval=resval+$(this).html();
+	                 res.val(resval);        
+            });
+             //运算符
+             $('.oper').on('click',function(){
+             	if(operator != 0){
+             	switch(operator){
+                	case 0:
+                	     resval=Number(sumval)+Number(resval);             	     
+                	     break;
+                	case 1:
+                	     resval=Number(sumval)+Number(resval);             	     
+                	     break;
+                	case 2:
+                	     resval=Number(sumval)-Number(resval);
+                	     break;
+                	case 3:
+                	     resval=Number(sumval)*Number(resval);
+                	     break;
+                	case 4:
+                	     resval=Number(sumval)/Number(resval);
+                	     break;
+                	case 5:
+                	     resval=Number(sumval)%Number(resval);
+                	     break;
+                } 
+             	}
+             	operator=Number($(this).attr('operator'));
+            	sumval=resval;
+            	sum.val(resval+jon[operator-1]);
+            	resval=0;
+            	res.val('');
+             })
+             //等于
+             $('.equal').on('click',function(){
+             	
+                switch(operator){
+                	case 0:
+                	     sum.val(sumval+'+'+resval);
+                	     resval=Number(sumval)+Number(resval);             	     
+                	     res.val(resval);
+                	     operator=0;
+                	     break;
+                	case 1:
+                	     sum.val(sumval+'+'+resval);
+                	     resval=Number(sumval)+Number(resval);             	     
+                	     res.val(resval);
+                	     operator=0;
+                	     break;
+                	case 2:
+                	     sum.val(sumval+'-'+resval);
+                	     resval=Number(sumval)-Number(resval);
+                	     res.val(resval); 
+                	     operator=0;
+                	     break;
+                	case 3:
+                	     sum.val(sumval+'*'+resval);
+                	     resval=Number(sumval)*Number(resval);
+                	     res.val(resval);       
+                	     operator=0;
+                	     break;
+                	case 4:
+                	     sum.val(sumval+'/'+resval);
+                	     resval=Number(sumval)/Number(resval);
+                	     res.val(resval);
+                	     operator=0;
+                	     break;
+                	case 5:
+                	     sum.val(sumval+'%'+resval);
+                	     resval=Number(sumval)%Number(resval);
+                	     res.val(resval);
+                	     operator=0;
+                	     break;
+                }
+             });
+ 
+ 
+ 
+		});
+	</script>
+</head>
+<body>
+	<div style="width:250px;height:400px;background-color:black;margin:300px auto 0">
+		<div class="reveal">
+			<input type="button" name="" class="sum" style="width:250px">
+			<input type="text" name="" value="0" class="result">
+		</div>
+		<div class="button">
+			<ul>
+				<li>
+					<button class="dump">AC</button>
+					<button class="clear">C</button>
+					<button class="oper" operator="5">%</button>
+					<button class="oper" operator="4">/</button>
+				</li>
+				<li>
+					<button class="number">7</button>
+					<button class="number">8</button>
+					<button class="number">9</button>
+					<button class="oper" operator="3">*</button>
+				</li>
+				<li>
+					<button class="number">4</button>
+					<button class="number">5</button>
+					<button class="number">6</button>
+					<button class="oper" operator="2">-</button>
+				</li>
+				<li>
+					<button class="number">1</button>
+					<button class="number">2</button>
+					<button class="number">3</button>
+					<button class="oper" operator="1">+</button>
+				</li>
+				<li>
+					<button class="number" style="width:105px;">0</button>
+					<button class="spot">.</button>
+					<button class="equal" operator="0">=</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
