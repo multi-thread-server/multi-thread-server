@@ -1,7 +1,0 @@
-*{margin:0;padding:0;}
-ul,li{list-style: none;}
-.reveal{width:100%;height:100px;}
-.reveal>input{height:50px;line-height: 50px;font-size:50px;color:#ffffff;background-color: black;text-align: right;border: none;width: 240px;padding-right: 10px;}
-.button>ul>li>button{height:50px;width:45px;border:none;border-radius: 25px;margin:5px ;color:#ffffff;background-color:#585252;font-size:20px;}
-.button>ul li:first-child>button{background:#D6D0CE;color:black;}
-.button>ul li button:last-child{background:#F09C10;color:#ffffff;}
