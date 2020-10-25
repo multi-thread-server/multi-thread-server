@@ -20,7 +20,7 @@ def build_cgi_environ(http_request):
 app_registry = {}
 
 def register_app(path, method):
-    def app_decorator(application):
+    def app_decorator(app):
         app_registry[path][method] = app
         return app
     return app_decorator
