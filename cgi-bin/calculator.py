@@ -1,4 +1,4 @@
-from ../cgi import method_get, method_post
+from ../cgi-bin import method_get, method_post
 
 @method_get
 def get(cgi_request):
