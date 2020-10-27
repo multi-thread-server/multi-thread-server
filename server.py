@@ -1,7 +1,8 @@
 import socket
 import threading
 from http import HttpRequest, HttpResponse
-from cgi import cgi
+from cgi_bin.cgi import cgi
+from cgi_bin import calculator   # import all cgi apps
 
 class Session:
 

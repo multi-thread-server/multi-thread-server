@@ -21,6 +21,8 @@ app_registry = {}
 
 def register_app(path, method):
     def app_decorator(app):
+        if path not in app_registry:
+            app_registry[path] = {}
         app_registry[path][method] = app
         return app
     return app_decorator
