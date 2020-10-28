@@ -1,5 +1,10 @@
-from http import HttpRequest, HttpResponse
+import sys
 import os
+sys.path.append("..")
+
+#import http
+from http import HttpRequest, HttpResponse
+
 
 def build_cgi_environ(http_request):
     url_parts = http_request.get_url().split('?')
