@@ -3,6 +3,7 @@ import threading
 from http import HttpRequest, HttpResponse
 from cgi_bin.cgi import cgi
 from cgi_bin import calculator   # import all cgi apps
+from cgi_bin import dataQuery
 
 class Session:
 
