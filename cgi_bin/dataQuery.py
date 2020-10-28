@@ -1,5 +1,4 @@
 from cgi_bin.cgi import method_get, method_post
-import PyMySQL
 
 class StudentID:
 
