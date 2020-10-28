@@ -40,10 +40,7 @@ def get(cgi_environ):
 
 @method_post('/cgi_bin/calculator.py')
 def post(cgi_environ):
-    print(cgi_environ)    # 输入参数信息
-    # 根据post内容生成新的网页返回
     a, b, op, result = cgi_environ['CONTENT'].split('&')
-    print(a+" "+b+" "+op)
 
     a, b = int(a.split('=')[1]), int(b.split('=')[1])
     op = op.split('=')[0]

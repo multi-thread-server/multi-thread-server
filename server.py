@@ -1,8 +1,10 @@
 import socket
 import threading
+import logging
 from http import HttpRequest, HttpResponse
 from cgi_bin.cgi import cgi
 from cgi_bin import calculator   # import all cgi apps
+from log import log
 
 class Session:
 
@@ -17,8 +19,10 @@ class Session:
             http_request.feed_data(data)
         http_response = cgi(http_request)
         self.client_socket.send(http_response.build_http())
+        log('{} - {} - {} - {}'.format(self.address, 
+            http_request.get_method(), http_request.get_url(), 
+            http_response.get_content_type()))
         self.client_socket.close()
-        print('session closed')
 
 class Server:
 
@@ -34,6 +38,5 @@ class Server:
         while True:
             client_socket, address = self.server_socket.accept()
             # TODO: write log
-            print('socket established with {}.'.format(address))
             session = Session(client_socket, address)
             threading.Thread(target=session.run).start()

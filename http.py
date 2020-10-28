@@ -102,6 +102,9 @@ class HttpResponse:
         self.content = content.encode('utf-8')
         self.content_length = len(self.content)
 
+    def get_content_type(self):
+        return self.content_type
+
     def build_http(self):
         data = '{} {}\r\n'.format(self.version, self.status)
         data += 'Content-Length: {}\r\n'.format(self.content_length)
