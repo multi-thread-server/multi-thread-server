@@ -1,5 +1,5 @@
 import os, datetime
-log_dir = os.getcwd() + '/log/log.txt'
+log_dir = os.getcwd() + '/log_bin/log.txt'
 
 def log(msg):
     now = datetime.datetime.now()
