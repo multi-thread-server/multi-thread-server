@@ -1,4 +1,5 @@
 from cgi_bin.cgi import method_get, method_post
+import xlrd
 
 class StudentID:
 
@@ -38,8 +39,27 @@ def get(cgi_environ):
 def post(cgi_environ):
     print(cgi_environ)    # 输入参数信息
     # 根据post内容生成新的网页返回
+
+    file = "E:/vscoderepo/multi-thread-server/cgi_bin/student_info.xlsx"
     id, name, banji = cgi_environ['CONTENT'].split('&')
-    print(id+"&"+name+"&"+banji)
+    
+    workbook = xlrd.open_workbook(file)
+    Table = workbook.sheet_by_name("Sheet1")
+    #Table = workbook.sheet_by_index(0)
 
+    length = Table.nrows
+    id=id[3:6]
+    print(id)
+    flag = 0
+    for i in range(length):
+        row = Table.row_values(i)
+        if id in row[0]:
+            flag = 1
+            name = row[1]
+            banji = row[2]
 
+    if( flag==0 ):
+        name="student not found" 
+        banji="student not found"
+    
     return '200 OK', 'text/html', StudentID(id, name, banji).build_html()
